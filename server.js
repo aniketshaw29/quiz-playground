@@ -3,6 +3,7 @@ const http = require('http');
 const path = require('path');
 const QRCode = require('qrcode');
 const { Server } = require('socket.io');
+const seedQuizzes = require('./data/seed-quizzes');
 
 const app = express();
 const server = http.createServer(app);
@@ -28,6 +29,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 const quizzes = new Map(); // quizId -> quiz
 const sessions = new Map(); // joinCode -> session
 const quizToSession = new Map(); // quizId -> joinCode
+
+// Load demo quizzes (disabled with SEED=false)
+function loadSeedData() {
+  if (process.env.SEED === 'false') return 0;
+  let loaded = 0;
+  for (const quiz of seedQuizzes) {
+    if (!quizzes.has(quiz.id)) {
+      quizzes.set(quiz.id, { ...quiz, createdAt: 0 });
+      loaded += 1;
+    }
+  }
+  return loaded;
+}
 
 function genCode(len = 6) {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // no 0/O/1/I confusion
@@ -78,6 +92,13 @@ function validateQuiz(rawTitle, rawQuestions) {
 }
 
 // ---- HTTP API ----
+app.get('/api/quizzes', (req, res) => {
+  const list = [...quizzes.values()]
+    .sort((a, b) => (a.createdAt === 0) - (b.createdAt === 0) || b.createdAt - a.createdAt)
+    .map((q) => ({ id: q.id, title: q.title, questionCount: q.questions.length, demo: q.createdAt === 0 }));
+  res.json({ quizzes: list });
+});
+
 app.post('/api/quizzes', (req, res) => {
   const { title, questions } = req.body || {};
   const result = validateQuiz(title, questions);
@@ -368,5 +389,7 @@ io.on('connection', (socket) => {
 });
 
 server.listen(PORT, () => {
+  const seeded = loadSeedData();
   console.log(`Quizzy running at http://localhost:${PORT}`);
+  console.log(`Seeded ${seeded} demo quiz(zes).`);
 });

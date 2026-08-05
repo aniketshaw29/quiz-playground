@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Join a game — Quizzy</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="logo-row">
+      <span class="logo small">Quizzy</span>
+      <a href="/">← Home</a>
+    </header>
+
+    <!-- Join form -->
+    <section id="screen-join" class="screen">
+      <div class="join-card">
+        <h1>Join a game</h1>
+        <input id="code-input" type="text" maxlength="6" placeholder="Game code" autocomplete="off" />
+        <input id="name-input" type="text" maxlength="20" placeholder="Your nickname" autocomplete="off" />
+        <button id="join-btn" class="btn primary big block">Join</button>
+        <p id="join-error" class="error hidden"></p>
+      </div>
+    </section>
+
+    <!-- Lobby -->
+    <section id="screen-lobby" class="screen hidden">
+      <div class="lobby-card">
+        <div class="spinner"></div>
+        <h1>You're in!</h1>
+        <p id="lobby-title" class="muted"></p>
+        <p class="muted">Waiting for the host to start…</p>
+        <p id="lobby-count" class="muted"></p>
+      </div>
+    </section>
+
+    <!-- Question -->
+    <section id="screen-question" class="screen hidden">
+      <p id="p-label" class="q-progress"></p>
+      <div class="timer-bar"><div id="timer-fill"></div></div>
+      <h1 id="p-prompt" class="question-text"></h1>
+      <div id="p-options" class="answers-grid"></div>
+      <p id="p-status" class="status-line">Pick an answer!</p>
+    </section>
+
+    <!-- Result -->
+    <section id="screen-result" class="screen hidden">
+      <div class="result-card">
+        <h1 id="res-headline"></h1>
+        <div id="res-answer" class="correct-banner"></div>
+        <p id="res-points" class="big-score"></p>
+        <p id="res-total" class="muted">Waiting for the next question…</p>
+      </div>
+    </section>
+
+    <!-- Finished -->
+    <section id="screen-finished" class="screen hidden">
+      <h1 class="page-title">Final results 🎉</h1>
+      <p id="final-rank" class="big-score"></p>
+      <ol id="final-standings" class="standings"></ol>
+      <div class="results-actions">
+        <a class="btn primary" href="/">Back to home</a>
+      </div>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/join.js"></script>
+</body>
+</html>

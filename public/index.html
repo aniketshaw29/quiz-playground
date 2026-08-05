@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quizzy — Create & play quizzes</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="logo-row"><span class="logo">Quizzy</span></header>
+
+    <main class="home-main">
+      <h1 class="hero">Create a quiz.<br /><span class="grad">Play it live.</span></h1>
+      <p class="sub">No sign-up. Build a quiz, share the code or QR, and play together in real time.</p>
+
+      <div class="home-cards">
+        <a class="card" href="/create.html">
+          <div class="cta-icon">✏️</div>
+          <h2>Create a quiz</h2>
+          <p>Build questions and host a live game.</p>
+        </a>
+        <a class="card" href="/join.html">
+          <div class="cta-icon">🎮</div>
+          <h2>Join a game</h2>
+          <p>Enter a code and play with friends.</p>
+        </a>
+      </div>
+
+      <section id="demo-section" class="hidden">
+        <h3 class="section-title">Or try a demo quiz</h3>
+        <div id="demo-grid" class="demo-grid"></div>
+      </section>
+
+      <section id="my-quizzes" class="my-quizzes hidden">
+        <h3>Your quizzes</h3>
+        <ul id="quiz-list"></ul>
+      </section>
+    </main>
+  </div>
+  <script src="/js/home.js"></script>
+</body>
+</html>

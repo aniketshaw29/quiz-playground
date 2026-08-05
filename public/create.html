@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create a quiz — Quizzy</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="logo-row">
+      <span class="logo small">Quizzy</span>
+      <a href="/">← Home</a>
+    </header>
+
+    <main class="create-head">
+      <h1>Create your quiz</h1>
+      <p class="muted">Add a title, then write questions. Pick the circle to mark the correct answer.</p>
+    </main>
+
+    <div class="quiz-title-row">
+      <input id="title" type="text" maxlength="120" placeholder="Quiz title — e.g. Trivia Night" />
+    </div>
+
+    <div id="questions"></div>
+
+    <div class="actions-row">
+      <button id="add-question" class="btn ghost">+ Add question</button>
+      <button id="save" class="btn primary big">Create quiz →</button>
+    </div>
+    <p id="error" class="error hidden"></p>
+  </div>
+
+  <script src="/js/create.js"></script>
+</body>
+</html>

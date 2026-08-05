@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Host — Quizzy</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="page">
+    <header class="logo-row">
+      <span class="logo small">Quizzy</span>
+      <a href="/">← Home</a>
+    </header>
+
+    <!-- Share / lobby -->
+    <section id="screen-share" class="screen hidden">
+      <div class="share-grid">
+        <div class="panel code-panel">
+          <span class="muted">Join code</span>
+          <h1 id="code" class="join-code"></h1>
+          <div class="code-actions">
+            <button id="copy-code" class="btn ghost small">Copy code</button>
+            <button id="copy-link" class="btn ghost small">Copy link</button>
+          </div>
+          <img id="qr" class="qr" alt="QR code to join" />
+          <p id="join-link" class="join-link"></p>
+        </div>
+        <div class="panel lobby-panel">
+          <h2 id="quiz-title"></h2>
+          <p id="player-count" class="muted count">No players yet</p>
+          <ul id="player-list" class="player-list">
+            <li class="empty-state">Waiting for players to join…</li>
+          </ul>
+          <button id="start" class="btn primary big block">Start game</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Question -->
+    <section id="screen-question" class="screen hidden">
+      <p id="q-label" class="q-progress"></p>
+      <div class="timer-bar"><div id="timer-fill"></div></div>
+      <h1 id="hq-prompt" class="question-text"></h1>
+      <div id="hq-options" class="answers-grid"></div>
+      <div class="host-footer">
+        <span id="hq-answered" class="muted"></span>
+        <button id="reveal" class="btn primary">Reveal answers</button>
+      </div>
+    </section>
+
+    <!-- Reveal -->
+    <section id="screen-reveal" class="screen hidden">
+      <p id="r-label" class="q-progress"></p>
+      <p class="muted center">Correct answer</p>
+      <div id="r-correct" class="correct-banner"></div>
+      <ul id="r-list" class="reveal-list"></ul>
+      <button id="next" class="btn primary big block">Next question →</button>
+    </section>
+
+    <!-- Final results -->
+    <section id="screen-results" class="screen hidden">
+      <h1 class="page-title">Final results 🎉</h1>
+      <ol id="standings" class="standings"></ol>
+      <div class="results-actions">
+        <button id="play-again" class="btn primary big">Play again</button>
+        <a class="btn ghost big" href="/">Back to home</a>
+      </div>
+    </section>
+
+    <!-- Error -->
+    <section id="screen-error" class="screen hidden">
+      <div class="error-screen">
+        <h1>Oops</h1>
+        <p id="boot-error"></p>
+        <a class="btn primary" href="/">Back to home</a>
+      </div>
+    </section>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/js/host.js"></script>
+</body>
+</html>
